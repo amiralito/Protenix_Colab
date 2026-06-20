@@ -1,9 +1,8 @@
-# Protenix-v2 on Colab
+# Protenix-v2 on Colab: Accessible High-Accuracy Biomolecular Structure Prediction on Google Colab
 
 Two Google Colab notebooks and a helper script for running [Protenix-v2](https://github.com/bytedance/Protenix)
 (ByteDance, AlphaFold3-class) end-to-end on Colab, using the **ColabFold MSA server** so **no local
-sequence databases** are needed. Built around protein–protein and effector–NLR / resistosome work,
-but nothing here is plant-specific — it works for any complex Protenix can take.
+sequence databases** are needed.
 
 Everything runs from forms (code is collapsed by default), predictions and the MSA cache persist to
 Google Drive, and the outputs are wired straight into downstream interface scoring (**ipSAE**),
@@ -156,6 +155,41 @@ For older ChimeraX / protein-only complexes, open the `*_pae.json` with `format 
 - **ipSAE** — Dunbrack, *bioRxiv* (2025) · <https://github.com/DunbrackLab/IPSAE>
 - **MolView** — Steven Yu · <https://github.com/54yyyu/molview>
 - **ChimeraX** — Pettersen et al., *Protein Sci.* (2021)
+
+
+## References
+
+1. **Protenix-v2.** ByteDance AML AI4Science Team (Protenix Team). *Protenix-v2 Technical Report* (2026). https://github.com/bytedance/Protenix/blob/main/docs/PX2.pdf
+2. **Protenix (original).** ByteDance AML AI4Science Team. *Protenix: Advancing Structure Prediction Through a Comprehensive AlphaFold3 Reproduction.* bioRxiv (2025). https://doi.org/10.1101/2025.01.08.631967 <!-- verify DOI before release -->
+3. **Protenix-Mini.** Protenix Team. *Protenix-Mini: Efficient Structure Prediction with Compact Architecture and Few-Step Diffusion.* arXiv:2507.11839 (2025). https://arxiv.org/abs/2507.11839
+4. **AlphaFold 3.** Abramson J, Adler J, Dunger J, *et al.* Accurate structure prediction of biomolecular interactions with AlphaFold 3. *Nature* **630**, 493–500 (2024). https://doi.org/10.1038/s41586-024-07487-w
+5. **ColabFold.** Mirdita M, Schütze K, Moriwaki Y, Heo L, Ovchinnikov S, Steinegger M. ColabFold: making protein folding accessible to all. *Nature Methods* **19**, 679–682 (2022). https://doi.org/10.1038/s41592-022-01488-1
+6. **ipSAE.** Dunbrack RL Jr. *Increasing the accuracy of protein–protein interface confidence estimation with ipSAE.* bioRxiv (2025). https://doi.org/10.1101/2025.02.10.637595 · https://github.com/DunbrackLab/IPSAE <!-- verify title/DOI before release -->
+7. **MolView.** Yu S. *MolView: a Mol\*-based molecular viewer for Jupyter/Colab.* Software. https://github.com/54yyyu/molview
+8. **UCSF ChimeraX.** Pettersen EF, Goddard TD, Huang CC, *et al.* UCSF ChimeraX: Structure visualization for researchers, educators, and developers. *Protein Science* **30**, 70–82 (2021). https://doi.org/10.1002/pro.3943
+
+## Citation
+
+If you use these notebooks in your work, please cite this repository:
+
+<!-- PLACEHOLDER — fill in after creating the Zenodo release -->
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
+
+> Toghani, A. (YEAR). *Protenix_Colab: Colab notebooks for Protenix-v2 structure prediction.* Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
+
+```bibtex
+@software{toghani_protenix_colab_YEAR,
+  author    = {Toghani, AmirAli},
+  title     = {{Protenix\_Colab: Colab notebooks for Protenix-v2 structure prediction}},
+  year      = {YEAR},
+  publisher = {Zenodo},
+  version   = {vX.Y.Z},
+  doi       = {10.5281/zenodo.XXXXXXX},
+  url       = {https://doi.org/10.5281/zenodo.XXXXXXX}
+}
+```
+
+Please also cite **Protenix** [1, 2] (and [3] if you use the Mini model), which these notebooks wrap, and the tools you make use of: **ColabFold** [5] for MSAs, **ipSAE** [6] for interface scoring, **MolView** [7] for visualization, and **ChimeraX** [8] for PAE/structure inspection. Protenix is a reproduction of **AlphaFold 3** [4].
 
 ## License
 

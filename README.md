@@ -21,9 +21,9 @@ PAE export for **ChimeraX**, and an interactive **MolView** model browser.
 
 > Replace `USER/REPO` with your repository path after uploading.
 
-[![Single](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/USER/REPO/blob/main/protenix_v2_single.ipynb) &nbsp;**single prediction**
+[![Single](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amiralito/Protenix_Colab/blob/main/protenix_v2_single.ipynb) &nbsp;**single prediction**
 
-[![Batch](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/USER/REPO/blob/main/protenix_v2_batch.ipynb) &nbsp;**batch predictions**
+[![Batch](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amiralito/Protenix_Colab/blob/main/protenix_v2_batch.ipynb) &nbsp;**batch predictions**
 
 ## Requirements
 

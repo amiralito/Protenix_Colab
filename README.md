@@ -175,15 +175,15 @@ If you use these notebooks in your work, please cite this repository:
 <!-- PLACEHOLDER — fill in after creating the Zenodo release -->
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
 
-> Toghani, A. (YEAR). *Protenix_Colab: Colab notebooks for Protenix-v2 structure prediction.* Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
+> Toghani, A. (2026). *Protenix-v2 on Colab: Accessible High-Accuracy Biomolecular Structure Prediction on Google Colab.* Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
 
 ```bibtex
 @software{toghani_protenix_colab_YEAR,
   author    = {Toghani, AmirAli},
-  title     = {{Protenix\_Colab: Colab notebooks for Protenix-v2 structure prediction}},
-  year      = {YEAR},
+  title     = {{Protenix-v2 on Colab: Accessible High-Accuracy Biomolecular Structure Prediction on Google Colab}},
+  year      = {2026},
   publisher = {Zenodo},
-  version   = {vX.Y.Z},
+  version   = {v1.0.0},
   doi       = {10.5281/zenodo.XXXXXXX},
   url       = {https://doi.org/10.5281/zenodo.XXXXXXX}
 }

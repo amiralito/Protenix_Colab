@@ -178,7 +178,7 @@ If you use these notebooks in your work, please cite this repository:
 > Toghani, A. (2026). *Protenix-v2 on Colab: Accessible High-Accuracy Biomolecular Structure Prediction on Google Colab.* Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
 
 ```bibtex
-@software{toghani_protenix_colab_YEAR,
+@software{toghani_protenix_colab_2026,
   author    = {Toghani, AmirAli},
   title     = {{Protenix-v2 on Colab: Accessible High-Accuracy Biomolecular Structure Prediction on Google Colab}},
   year      = {2026},

@@ -9,6 +9,8 @@ Everything runs from forms (code is collapsed by default), predictions and the M
 Google Drive, and the outputs are wired straight into downstream interface scoring (**ipSAE**),
 PAE export for **ChimeraX**, and an interactive **MolView** model browser.
 
+* Protenix-v2 is still not publicly accessible but has been integrated into these Colab notebooks. You can still use the previous versions available in the same notebooks.
+
 ## Contents
 
 | File | What it is |

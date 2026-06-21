@@ -4,7 +4,7 @@ Two Google Colab notebooks and a helper script for running [Protenix-v2](https:/
 (ByteDance, AlphaFold3-class) end-to-end on Colab, using the **ColabFold MSA server** so **no local
 sequence databases** are needed.
 
-Everything runs from forms (code is collapsed by default), predictions and the MSA cache persist to
+Everything runs from forms, predictions and the MSA cache persist to
 Google Drive, and the outputs are wired straight into downstream interface scoring (**ipSAE**),
 PAE export for **ChimeraX**, and an interactive **MolView** model browser.
 

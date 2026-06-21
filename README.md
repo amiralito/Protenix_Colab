@@ -193,5 +193,5 @@ Please also cite **Protenix** [1, 2] (and [3] if you use the Mini model), which 
 
 ## License
 
-MIT — see `LICENSE`. The bundled tools (Protenix, ipSAE, MolView, ColabFold) keep their own licenses;
+MIT. The bundled tools (Protenix, ipSAE, MolView, ColabFold) keep their own licenses;
 please cite them if you use this in published work.

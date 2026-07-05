@@ -8,7 +8,7 @@ Everything runs from forms, predictions and the MSA cache persist to
 Google Drive, and the outputs are wired straight into downstream interface scoring (**ipSAE**),
 PAE export for **ChimeraX**, and an interactive **MolView** model browser.
 
-* Protenix-v2 is still not publicly accessible but has been integrated into these Colab notebooks. You can still use the previous versions available in the same notebooks.
+* Protenix-v2 weights are now fetched automatically from a community HuggingFace mirror ([TMF001/protenix-v2-weights](https://huggingface.co/TMF001/protenix-v2-weights)), since the official ByteDance URL is region-blocked. You can still use the previous versions available in the same notebooks.
 
 ## Contents
 
@@ -40,7 +40,7 @@ The first run on a fresh runtime downloads the model weights automatically.
 
 Predict and inspect one complex.
 
-1. **1–3b** Setup: GPU check, install, (Blackwell torch if needed), helpers, Drive mount.
+1. **1–3c** Setup: GPU check, install (auto-installs the Blackwell nightly torch if needed), helpers, Drive mount, Protenix-v2 weights.
 2. **4a–4d** Pick one input form: monomer, multimer (≤4 distinct chains), homomer (N copies), or protein + ligand (+ ion).
 3. **5** Run settings: model, seeds, samples per seed, dtype, MSA mode.
 4. **5b** *(optional)* Enable dense-PAE capture — run **before** inference.
@@ -55,7 +55,7 @@ Predict and inspect one complex.
 
 Predict and analyze many complexes; unique sequences are MSA-searched once and reused across jobs.
 
-1. **1–3b** Setup (same as above).
+1. **1–3c** Setup (same as above).
 2. **5** Run settings.
 3. **B1** Load a batch list (built with `make_protenix_batch.py`).
 4. **B2-pre** *(optional)* Enable dense-PAE capture — run **before** B2.
@@ -138,9 +138,12 @@ For older ChimeraX / protein-only complexes, open the `*_pae.json` with `format 
 ## Notes & tips
 
 - **Blackwell GPUs (sm_120).** Stock wheels lack sm_120 kernels and Protenix's fused LayerNorm
-  is precompiled without it. The notebook detects sm_120, sets `LAYERNORM_TYPE=torch`, disables
-  `--enable_fusion`, and points you to a one-time nightly cu128 torch install (cell 2c). An **A100**
-  needs none of this and is the reliable fallback.
+  is precompiled without it. The install cell detects sm_120 and installs the nightly cu128 torch
+  **automatically** (no restart), sets `LAYERNORM_TYPE=torch`, and disables `--enable_fusion` (cell 2c
+  is a manual fallback). An **A100** needs none of this and is the reliable fallback.
+- **Weights.** `protenix-v2` weights (~1.9 GB) download once from the HuggingFace mirror (via
+  `hf_transfer`/`aria2c`) and are cached to Drive, so later runs reuse them; the optional weights cell
+  (3c) can pre-fetch them or store them at a custom path.
 - **MSA.** Uses the public ColabFold server (`api.colabfold.com`); MSAs are cached per sequence and
   reused across jobs and reruns.
 - **PAE is per-token.** For protein–protein complexes token = residue, so ChimeraX/ipSAE line up.
@@ -151,6 +154,7 @@ For older ChimeraX / protein-only complexes, open the `*_pae.json` with `format 
 ## Built on
 
 - **Protenix** — ByteDance · <https://github.com/bytedance/Protenix>
+- **Protenix-v2 weights (mirror)** — TMF001 · <https://huggingface.co/TMF001/protenix-v2-weights>
 - **ColabFold MSA server** — Mirdita et al., *Nat. Methods* (2022)
 - **ipSAE** — Dunbrack, *bioRxiv* (2025) · <https://github.com/DunbrackLab/IPSAE>
 - **MolView** — Steven Yu · <https://github.com/54yyyu/molview>

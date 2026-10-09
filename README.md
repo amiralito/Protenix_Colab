@@ -8,7 +8,7 @@ Everything runs from forms, predictions and the MSA cache persist to
 Google Drive, and the outputs are wired straight into downstream interface scoring (**ipSAE**),
 PAE export for **ChimeraX**, and an interactive **MolView** model browser.
 
-* Protenix-v2 weights are now fetched automatically from a community HuggingFace mirror ([TMF001/protenix-v2-weights](https://huggingface.co/TMF001/protenix-v2-weights)), since the official ByteDance URL is region-blocked. You can still use the previous versions available in the same notebooks.
+* Protenix-v2 is the default model. Its weights are taken from a path you provide, or downloaded from a community HuggingFace mirror ([TMF001/protenix-v2-weights](https://huggingface.co/TMF001/protenix-v2-weights)) if it allows access; otherwise the notebooks fall back to `protenix_base_20250630_v1.0.0`. You can still use the previous versions available in the same notebooks.
 
 ## Contents
 
@@ -40,9 +40,9 @@ The first run on a fresh runtime downloads the model weights automatically.
 
 Predict and inspect one complex.
 
-1. **1–3c** Setup: GPU check, install (auto-installs the Blackwell nightly torch if needed), helpers, Drive mount, Protenix-v2 weights.
+1. **1–3c** Setup: GPU check, install (auto-installs the Blackwell nightly torch if needed), Drive mount, helpers, Protenix-v2 weights.
 2. **4a–4d** Pick one input form: monomer, multimer (≤4 distinct chains), homomer (N copies), or protein + ligand (+ ion).
-3. **5** Run settings: model, seeds, samples per seed, dtype, MSA mode.
+3. **5** Run settings: model (+ optional protenix-v2 weights path), seeds, samples per seed, dtype, MSA mode.
 4. **5b** *(optional)* Enable dense-PAE capture — run **before** inference.
 5. **6** MSA (ColabFold server) + inference.
 6. **7** Rank predictions by confidence.
@@ -60,11 +60,11 @@ Predict and analyze many complexes; unique sequences are MSA-searched once and r
 3. **B1** Load a batch list (built with `make_protenix_batch.py`).
 4. **B2-pre** *(optional)* Enable dense-PAE capture — run **before** B2.
 5. **B2** MSA + inference over the whole batch.
-6. **B3** Per-job summary (best sample, ranked by interface ipTM).
+6. **B3** Per-job summary (best sample, ranked by ipTM).
 7. **B4** Master confidence table — every model in the batch (CSV).
 8. **B5** PAE export — best per seed (ChimeraX/ipSAE `.npz` + heatmap).
 9. **B6** ipSAE interface scores (all chain pairs, CSV).
-10. **B7** Per-job means across seeds — pTM / ipTM / interface-ipTM / ipSAE (mean ± std).
+10. **B7** Per-job means across seeds — pTM / ipTM / ipSAE (mean ± std).
 11. **B8** MolView viewer across all jobs.
 12. **B9** Interface contacts — one table per job.
 13. **10 / 10b** Zip & download / archive.
@@ -141,11 +141,11 @@ For older ChimeraX / protein-only complexes, open the `*_pae.json` with `format 
   is precompiled without it. The install cell detects sm_120 and installs the nightly cu128 torch
   **automatically** (no restart), sets `LAYERNORM_TYPE=torch`, and disables `--enable_fusion` (cell 2c
   is a manual fallback). An **A100** needs none of this and is the reliable fallback.
-- **Weights.** `protenix-v2` weights (~1.9 GB) download once from the HuggingFace mirror (via
-  `hf_transfer`/`aria2c`) and are cached to Drive, so later runs reuse them; the optional weights cell
-  (3c) can pre-fetch them or store them at a custom path.
-- **MSA.** Uses the public ColabFold server (`api.colabfold.com`); MSAs are cached per sequence and
-  reused across jobs and reruns.
+- **Weights.** `protenix-v2` weights (~1.9 GB) are taken from the Run-settings path, the 3c path or the
+  Drive cache, or downloaded once from the HuggingFace mirror. If none works, inference falls back to
+  `protenix_base_20250630_v1.0.0` and says so; the model used is written to `<run>/model_used.txt`.
+- **MSA.** Uses the public ColabFold server (`api.colabfold.com`); each unique sequence is searched once,
+  cached, and reused across jobs and reruns. Searches still queued after a timeout are resubmitted.
 - **PAE is per-token.** For protein–protein complexes token = residue, so ChimeraX/ipSAE line up.
   Complexes with ligands have extra atom-tokens — the Boltz-style `.npz` route handles this in both
   ChimeraX (≥1.10) and ipSAE; the per-residue `.json` route does not.
